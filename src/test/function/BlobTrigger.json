@@ -1,0 +1,15 @@
+{
+  "bindings": [
+    {
+      "name": "myBlob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "samples-workitems/{name}",
+      "connection": ""
+    }
+  ],
+  "disabled": false,
+  "entryPoint": "myFunction",
+  "excluded": false,
+  "scriptFile": "test.js"
+}

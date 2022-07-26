@@ -1,0 +1,34 @@
+{
+  "extends": "aaa",
+  "overrides": [
+    {
+      "files": "*.jsx",
+      "processor": "slender3/slender3",
+      "excludedFiles": "*.config.json",
+      "rules": {
+        "no-console": "error"
+      }
+    },
+    {
+      "files": ["foo/*.js"],
+      "rules": {}
+    },
+    {
+      "files": ["bar/*.js"],
+      "excludedFiles": ["bar/excluded.js"],
+      "rules": {
+        "semicolon": "error",
+        "unknown-rule": "error"
+      }
+    }
+  ],
+  "rules": {
+    "array-bracket-spacing": [
+      "error",
+      "never",
+      {
+        "objectsInArrays": false
+      }
+    ]
+  }
+}

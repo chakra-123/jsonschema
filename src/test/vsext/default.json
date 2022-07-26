@@ -1,0 +1,12 @@
+{
+  "description": "1",
+  "extensions": [
+    {
+      "vsixId": "123",
+      "name": "OzCode"
+    }
+  ],
+  "id": "fo",
+  "name": "My extension pack",
+  "version": "1.0.12.1"
+}

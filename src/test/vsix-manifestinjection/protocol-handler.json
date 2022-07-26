@@ -1,0 +1,19 @@
+{
+  "progIds": [
+    {
+      "id": "VisualStudio.vsrtc.[InstanceId]",
+      "displayName": "Microsoft Visual Studio Real-Time Collaboration",
+      "path": "[InstallDir]\\Common7\\IDE\\devenv.exe",
+      "arguments": "/JoinWorkspace",
+      "defaultIconPath": "[InstallDir]\\Common7\\IDE\\devenv.exe"
+    }
+  ],
+  "urlAssociations": [
+    {
+      "protocol": "vsrtc",
+      "displayName": "Microsoft Visual Studio Real-Time Collaboration",
+      "progId": "VisualStudio.vsrtc.[InstanceId]",
+      "defaultProgramRegistrationPath": "Software\\Microsoft\\VisualStudio_[InstanceId]\\Capabilities"
+    }
+  ]
+}

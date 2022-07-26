@@ -1,0 +1,1981 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome6",
+    "definitions": {
+        "Welcome6": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "config": {
+                    "$ref": "#/definitions/Config"
+                },
+                "scenarios": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Scenario"
+                    }
+                }
+            },
+            "title": "Welcome6"
+        },
+        "Config": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "plugins": {
+                    "$ref": "#/definitions/Plugins"
+                },
+                "phases": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Phase"
+                    }
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "required": ["phases", "plugins", "target"],
+            "title": "Config"
+        },
+        "Phase": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "duration": {
+                    "type": "integer"
+                },
+                "arrivalRate": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": ["arrivalRate", "duration", "name"],
+            "title": "Phase"
+        },
+        "Plugins": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "expect": {
+                    "$ref": "#/definitions/PluginsExpect"
+                },
+                "metrics-by-endpoint": {
+                    "$ref": "#/definitions/MetricsByEndpoint"
+                },
+                "publish-metrics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PublishMetric"
+                    }
+                }
+            },
+            "required": ["expect", "metrics-by-endpoint", "publish-metrics"],
+            "title": "Plugins"
+        },
+        "PluginsExpect": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "outputFormat": {
+                    "type": "string"
+                }
+            },
+            "required": ["outputFormat"],
+            "title": "PluginsExpect"
+        },
+        "MetricsByEndpoint": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "useOnlyRequestNames": {
+                    "type": "boolean"
+                }
+            },
+            "required": ["useOnlyRequestNames"],
+            "title": "MetricsByEndpoint"
+        },
+        "PublishMetric": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "port": {
+                    "type": "string"
+                },
+                "prefix": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "event": {
+                    "$ref": "#/definitions/Event"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": ["event", "host", "port", "prefix", "tags", "type"],
+            "title": "PublishMetric"
+        },
+        "Event": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "string"
+                },
+                "send": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": ["priority", "send", "status", "tags", "title"],
+            "title": "Event"
+        },
+        "Scenario": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "flow": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Flow"
+                    }
+                }
+            },
+            "required": ["flow"],
+            "title": "Scenario"
+        },
+        "Flow": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "post": {
+                    "$ref": "#/definitions/Post"
+                },
+                "get": {
+                    "$ref": "#/definitions/Get"
+                },
+                "delete": {
+                    "$ref": "#/definitions/Delete"
+                },
+                "put": {
+                    "$ref": "#/definitions/Put"
+                }
+            },
+            "required": [],
+            "title": "Flow"
+        },
+        "Delete": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "headers": {
+                    "$ref": "#/definitions/Headers"
+                },
+                "expect": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExpectElement"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "capture": {
+                    "$ref": "#/definitions/Capture"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "qs": {
+                    "$ref": "#/definitions/DeleteQs"
+                },
+                "json": {
+                    "$ref": "#/definitions/JSONElement"
+                }
+            },
+            "required": ["capture", "expect", "headers", "name", "url"],
+            "title": "Delete"
+        },
+        "Capture": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "as": {
+                    "$ref": "#/definitions/As"
+                },
+                "json": {
+                    "$ref": "#/definitions/JSONEnum"
+                }
+            },
+            "required": ["as", "json"],
+            "title": "Capture"
+        },
+        "ExpectElement": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "statusCode": {
+                    "type": "integer"
+                }
+            },
+            "required": ["statusCode"],
+            "title": "ExpectElement"
+        },
+        "Headers": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Authorization": {
+                    "$ref": "#/definitions/Authorization"
+                },
+                "referer": {
+                    "type": "string"
+                },
+                "atr-entity-key": {
+                    "type": "string"
+                },
+                "contentTypeUpload": {
+                    "$ref": "#/definitions/ContentTypeUpload"
+                },
+                "atr-reject-layer": {
+                    "type": "string"
+                },
+                "contentType": {
+                    "$ref": "#/definitions/Accept"
+                },
+                "accept": {
+                    "$ref": "#/definitions/Accept"
+                },
+                "Remote-Query": {
+                    "type": "string"
+                },
+                "Accept": {
+                    "$ref": "#/definitions/Accept"
+                },
+                "Content-Type": {
+                    "type": "string"
+                }
+            },
+            "required": [],
+            "title": "Headers"
+        },
+        "DeleteQs": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "responseTimeout": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                }
+            },
+            "required": ["responseTimeout"],
+            "title": "DeleteQs"
+        },
+        "Get": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "headers": {
+                    "$ref": "#/definitions/Headers"
+                },
+                "expect": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExpectElement"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "capture": {
+                    "$ref": "#/definitions/Capture"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "qs": {
+                    "$ref": "#/definitions/GetQs"
+                }
+            },
+            "required": ["capture", "expect", "headers", "name", "url"],
+            "title": "Get"
+        },
+        "GetQs": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                },
+                "responseTimeout": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                }
+            },
+            "required": [],
+            "title": "GetQs"
+        },
+        "Post": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "headers": {
+                    "$ref": "#/definitions/Headers"
+                },
+                "expect": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExpectElement"
+                    }
+                },
+                "form": {
+                    "$ref": "#/definitions/Form"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "capture": {
+                    "$ref": "#/definitions/Capture"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "qs": {
+                    "$ref": "#/definitions/DeleteQs"
+                },
+                "json": {
+                    "$ref": "#/definitions/JSONElement"
+                }
+            },
+            "required": ["capture", "expect", "headers", "name", "url"],
+            "title": "Post"
+        },
+        "Form": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "resource": {
+                    "type": "string"
+                },
+                "grant_type": {
+                    "type": "string"
+                },
+                "client_secret": {
+                    "type": "string"
+                },
+                "client_id": {
+                    "type": "string"
+                },
+                "Content-Type": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Content-Type",
+                "client_id",
+                "client_secret",
+                "grant_type",
+                "password",
+                "resource",
+                "username"
+            ],
+            "title": "Form"
+        },
+        "Put": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "headers": {
+                    "$ref": "#/definitions/Headers"
+                },
+                "expect": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExpectElement"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "json": {
+                    "$ref": "#/definitions/PutJSON"
+                },
+                "capture": {
+                    "$ref": "#/definitions/Capture"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "qs": {
+                    "$ref": "#/definitions/PutQs"
+                }
+            },
+            "required": ["capture", "expect", "headers", "name", "url"],
+            "title": "Put"
+        },
+        "PutJSON": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "apiKeyValue": {
+                    "type": "string"
+                },
+                "effectiveTo": {
+                    "type": "string"
+                },
+                "partner_ID": {
+                    "$ref": "#/definitions/PartnerID"
+                },
+                "acuityDevOnly": {
+                    "type": "boolean"
+                },
+                "organization_ID": {
+                    "type": "integer"
+                },
+                "apiKeyID": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "effectiveFrom": {
+                    "type": "string"
+                },
+                "last_Update_Date": {
+                    "type": "string"
+                },
+                "apimProductID": {
+                    "$ref": "#/definitions/ApimProductID"
+                },
+                "creation_Date": {
+                    "type": "string"
+                },
+                "last_Updated_By": {
+                    "type": "string"
+                },
+                "created_By": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "apimRoutePrefixID": {
+                    "type": "integer"
+                },
+                "routePrefix": {
+                    "type": "string"
+                },
+                "apimProduct_ID": {
+                    "type": "integer"
+                },
+                "allowApiKeyAccess": {
+                    "type": "boolean"
+                },
+                "absoluteUri": {
+                    "type": "string"
+                },
+                "applicationID": {
+                    "type": "integer"
+                },
+                "applicationName": {
+                    "type": "string"
+                },
+                "applicationApimRoutePrefixID": {
+                    "type": "integer"
+                },
+                "apimRoutePrefix_ID": {
+                    "type": "integer"
+                },
+                "application_ID": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "site_ID": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "hoursOfOperation": {
+                    "type": "string"
+                },
+                "buildingID": {
+                    "type": "integer"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "address2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "businessAddressID": {
+                    "type": "integer"
+                },
+                "address1": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "stateProvince": {
+                    "type": "string"
+                },
+                "address3": {
+                    "type": "string"
+                },
+                "contactID": {
+                    "type": "integer"
+                },
+                "locality": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "address4": {
+                    "type": "string"
+                },
+                "region": {
+                    "$ref": "#/definitions/RegionUnion"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "luminaires": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Luminaire"
+                    }
+                },
+                "groupName": {
+                    "type": "string"
+                },
+                "masterHostID": {
+                    "type": "string"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "groupID": {
+                    "type": "integer"
+                },
+                "vlcEnabled": {
+                    "type": "boolean"
+                },
+                "proximityUUID": {
+                    "type": "string"
+                },
+                "floorGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FloorGroup"
+                    }
+                },
+                "floorSpaceID": {
+                    "type": "integer"
+                },
+                "floorSpaceName": {
+                    "type": "string"
+                },
+                "siteID": {
+                    "type": "integer"
+                },
+                "siteName": {
+                    "type": "string"
+                },
+                "building_ID": {
+                    "type": "integer"
+                },
+                "controllerID": {
+                    "type": "integer"
+                },
+                "iotHubDeviceId": {
+                    "type": "string"
+                },
+                "floorIDs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JSONElement"
+                    }
+                },
+                "user_ID": {
+                    "type": "integer"
+                },
+                "role_ID": {
+                    "type": "integer"
+                },
+                "defaultUserAssignmentID": {
+                    "type": "integer"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/Properties"
+                },
+                "entitykey": {
+                    "type": "string"
+                },
+                "environment_ID": {
+                    "type": "string"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "partnerKey": {
+                    "type": "string"
+                },
+                "entityID": {
+                    "type": "integer"
+                },
+                "source_ID": {
+                    "type": "integer"
+                },
+                "sourceName": {
+                    "type": "string"
+                },
+                "effectiveFromUTCTimestamp": {
+                    "type": "string"
+                },
+                "effectiveToUTCTimestamp": {
+                    "type": "string"
+                },
+                "allSites": {
+                    "type": "boolean"
+                },
+                "entityAssignmentID": {
+                    "type": "integer"
+                },
+                "entity_ID": {
+                    "type": "integer"
+                },
+                "entityRelationshipID": {
+                    "type": "integer"
+                },
+                "parentEntity_ID": {
+                    "type": "integer"
+                },
+                "baseURL": {
+                    "type": "string"
+                },
+                "environmentID": {
+                    "type": "string"
+                },
+                "environmentName": {
+                    "type": "string"
+                },
+                "floorID": {
+                    "type": "integer"
+                },
+                "level": {
+                    "type": "string"
+                },
+                "mapServiceType": {
+                    "type": "string"
+                },
+                "mapToken_ID": {
+                    "type": "integer"
+                },
+                "routeZ": {
+                    "type": "integer"
+                },
+                "mapServiceURL": {
+                    "type": "string"
+                },
+                "verticalOrder": {
+                    "type": "integer"
+                },
+                "mobileFloorSpaceOptions": {
+                    "$ref": "#/definitions/JSONElement"
+                },
+                "gridXOffset": {
+                    "type": "integer"
+                },
+                "VLCEnabled": {
+                    "type": "boolean"
+                },
+                "GTX": {
+                    "type": "integer"
+                },
+                "mapOffsetX": {
+                    "type": "integer"
+                },
+                "coordinateConversionRule": {
+                    "type": "integer"
+                },
+                "GTY": {
+                    "type": "integer"
+                },
+                "mapOffsetY": {
+                    "type": "integer"
+                },
+                "cellLength": {
+                    "type": "integer"
+                },
+                "mapAngleOffsetRadians": {
+                    "type": "integer"
+                },
+                "VLCIDUpperLimit": {
+                    "type": "integer"
+                },
+                "floorSpaceWidth": {
+                    "type": "integer"
+                },
+                "gridYOffset": {
+                    "type": "integer"
+                },
+                "operatingPoint": {
+                    "type": "integer"
+                },
+                "GTHeight": {
+                    "type": "integer"
+                },
+                "GTXRotation": {
+                    "type": "integer"
+                },
+                "GTYRotation": {
+                    "type": "integer"
+                },
+                "fixtureType": {
+                    "type": "string"
+                },
+                "cellWidth": {
+                    "type": "integer"
+                },
+                "GTHeadingOffset": {
+                    "type": "integer"
+                },
+                "maxMountingHeight": {
+                    "type": "integer"
+                },
+                "GTImageOrigin": {
+                    "type": "string"
+                },
+                "GTWidth": {
+                    "type": "integer"
+                },
+                "floorSpaceLength": {
+                    "type": "integer"
+                },
+                "hasVLC": {
+                    "type": "boolean"
+                },
+                "floor_ID": {
+                    "type": "integer"
+                },
+                "hasBLEBeacons": {
+                    "type": "boolean"
+                },
+                "luminaireSummary": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LuminaireSummary"
+                    }
+                },
+                "floorSpace": {
+                    "$ref": "#/definitions/FloorSpace"
+                },
+                "deleteLuminaires": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JSONElement"
+                    }
+                },
+                "floorSpaceCatalogID": {
+                    "type": "integer"
+                },
+                "bootLoaderVersion": {
+                    "type": "string"
+                },
+                "floorSpace_ID": {
+                    "type": "integer"
+                },
+                "beaconUUID": {
+                    "type": "string"
+                },
+                "vlcID": {
+                    "type": "integer"
+                },
+                "programmed": {
+                    "type": "boolean"
+                },
+                "beaconID": {
+                    "type": "integer"
+                },
+                "softDeviceVersion": {
+                    "type": "string"
+                },
+                "firmwareVersion": {
+                    "type": "string"
+                },
+                "luminairePositionID": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "string"
+                },
+                "forceRecatalog": {
+                    "type": "boolean"
+                },
+                "acceptDuplicateVLCBLE": {
+                    "type": "boolean"
+                },
+                "tiledImageUrl": {
+                    "type": "string"
+                },
+                "epsg_ID": {
+                    "type": "integer"
+                },
+                "imagePixelHeight": {
+                    "type": "integer"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "imageMetersPerPixel": {
+                    "type": "integer"
+                },
+                "imagePixelWidth": {
+                    "type": "integer"
+                },
+                "displayImageUrl": {
+                    "type": "string"
+                },
+                "containerName": {
+                    "type": "string"
+                },
+                "mapID": {
+                    "type": "integer"
+                },
+                "folderName": {
+                    "type": "string"
+                },
+                "gcp": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Gcp"
+                    }
+                },
+                "projection": {
+                    "type": "integer"
+                },
+                "ApplicationName": {
+                    "type": "string"
+                },
+                "SettingValue": {
+                    "type": "string"
+                },
+                "SettingName": {
+                    "type": "string"
+                },
+                "interAppRoleMappingID": {
+                    "type": "integer"
+                },
+                "inputRole_ID": {
+                    "type": "integer"
+                },
+                "mappedRole_ID": {
+                    "type": "integer"
+                },
+                "floorSpaceCatalog_ID": {
+                    "type": "integer"
+                },
+                "ciCode": {
+                    "type": "string"
+                },
+                "reportingType": {
+                    "type": "string"
+                },
+                "locationDescription": {
+                    "type": "string"
+                },
+                "luminaireLabel": {
+                    "type": "string"
+                },
+                "externalWidth": {
+                    "type": "integer"
+                },
+                "luminaireType_ID": {
+                    "type": "integer"
+                },
+                "externalLength": {
+                    "type": "integer"
+                },
+                "flagNotes": {
+                    "type": "string"
+                },
+                "Y1": {
+                    "type": "integer"
+                },
+                "X1": {
+                    "type": "integer"
+                },
+                "Y2": {
+                    "type": "integer"
+                },
+                "luminaireNumber": {
+                    "type": "integer"
+                },
+                "X2": {
+                    "type": "integer"
+                },
+                "Y3": {
+                    "type": "integer"
+                },
+                "Z": {
+                    "type": "integer"
+                },
+                "X3": {
+                    "type": "integer"
+                },
+                "luminaireTypeDisplayName": {
+                    "type": "string"
+                },
+                "controlGroup_ID": {
+                    "type": "integer"
+                },
+                "code": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JSONElement"
+                    }
+                },
+                "y1": {
+                    "type": "integer"
+                },
+                "y2": {
+                    "type": "integer"
+                },
+                "y3": {
+                    "type": "integer"
+                },
+                "primaryID": {
+                    "type": "integer"
+                },
+                "x1": {
+                    "type": "integer"
+                },
+                "x2": {
+                    "type": "integer"
+                },
+                "z": {
+                    "type": "integer"
+                },
+                "x3": {
+                    "type": "integer"
+                },
+                "exteriorLength": {
+                    "type": "integer"
+                },
+                "exteriorWidth": {
+                    "type": "integer"
+                },
+                "luminaireTypeID": {
+                    "type": "integer"
+                },
+                "interiorLength": {
+                    "type": "integer"
+                },
+                "interiorWidth": {
+                    "type": "integer"
+                },
+                "authKey": {
+                    "type": "string"
+                },
+                "authURL": {
+                    "type": "string"
+                },
+                "authTimeout": {
+                    "type": "integer"
+                },
+                "mapTokenID": {
+                    "type": "integer"
+                },
+                "authToken": {
+                    "type": "string"
+                },
+                "token_Expire_Date": {
+                    "type": "string"
+                },
+                "authType": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "organizationID": {
+                    "type": "integer"
+                },
+                "beaconProximityUUID": {
+                    "type": "string"
+                },
+                "organizationName": {
+                    "type": "string"
+                },
+                "businessAddress_ID": {
+                    "type": "integer"
+                },
+                "entityKey": {
+                    "type": "string"
+                },
+                "foreign_ID": {
+                    "type": "integer"
+                },
+                "orgAssignmentID": {
+                    "type": "integer"
+                },
+                "org_ID": {
+                    "type": "integer"
+                },
+                "tableName": {
+                    "type": "string"
+                },
+                "partnerAssignmentID": {
+                    "type": "integer"
+                },
+                "partnerEnvironmentID": {
+                    "type": "integer"
+                },
+                "product_ID": {
+                    "type": "integer"
+                },
+                "effectiveToDate": {
+                    "type": "string"
+                },
+                "partnerProductID": {
+                    "type": "integer"
+                },
+                "effectiveFromDate": {
+                    "type": "string"
+                },
+                "partnerID": {
+                    "$ref": "#/definitions/PartnerID"
+                },
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Contact"
+                    }
+                },
+                "applicationSettingID": {
+                    "type": "integer"
+                },
+                "settingValue": {
+                    "type": "string"
+                },
+                "settingKey": {
+                    "type": "string"
+                },
+                "productID": {
+                    "type": "integer"
+                },
+                "apimSubscriptionName": {
+                    "type": "string"
+                },
+                "primaryKeyChangeDate": {
+                    "type": "string"
+                },
+                "partnerProduct_ID": {
+                    "type": "integer"
+                },
+                "apimSubscriptionID": {
+                    "type": "string"
+                },
+                "productSubscriptionID": {
+                    "type": "integer"
+                },
+                "secondaryKeyChangeDate": {
+                    "type": "string"
+                },
+                "roleID": {
+                    "type": "integer"
+                },
+                "parentRole_ID": {
+                    "type": "integer"
+                },
+                "roleName": {
+                    "type": "string"
+                },
+                "roleApimProductID": {
+                    "type": "integer"
+                },
+                "controlGroupsJsonD2CEnabled": {
+                    "type": "boolean"
+                },
+                "lumicastConfigTag": {
+                    "type": "string"
+                },
+                "neCornerLongitude": {
+                    "type": "integer"
+                },
+                "swCornerLongitude": {
+                    "type": "integer"
+                },
+                "centroidLatitude": {
+                    "type": "integer"
+                },
+                "floorSpaceJsonC2DEnabled": {
+                    "type": "boolean"
+                },
+                "neCornerLatitude": {
+                    "type": "integer"
+                },
+                "centroidLongitude": {
+                    "type": "integer"
+                },
+                "networkAnalystURL": {
+                    "type": "string"
+                },
+                "fromGeometri": {
+                    "type": "boolean"
+                },
+                "serviceStatus": {
+                    "type": "string"
+                },
+                "mobileSiteOptions": {
+                    "$ref": "#/definitions/JSONElement"
+                },
+                "timezoneID": {
+                    "type": "integer"
+                },
+                "swCornerLatitude": {
+                    "type": "integer"
+                },
+                "serviceLevel_ID": {
+                    "type": "integer"
+                },
+                "effectiveFromUTC": {
+                    "type": "string"
+                },
+                "effectiveToUTC": {
+                    "type": "string"
+                },
+                "siteAssignmentID": {
+                    "type": "integer"
+                },
+                "siteGroupID": {
+                    "type": "integer"
+                },
+                "siteGroupName": {
+                    "type": "string"
+                },
+                "siteGroup_ID": {
+                    "type": "integer"
+                },
+                "siteGroupAssignmentID": {
+                    "type": "integer"
+                },
+                "siteGroupSiteID": {
+                    "type": "integer"
+                },
+                "secondaryKey": {
+                    "type": "string"
+                },
+                "subscriptionID": {
+                    "type": "integer"
+                },
+                "primaryKey": {
+                    "type": "string"
+                },
+                "subscription_ID": {
+                    "type": "integer"
+                },
+                "tenantName": {
+                    "type": "string"
+                },
+                "issValue": {
+                    "type": "string"
+                },
+                "tenantID": {
+                    "type": "integer"
+                },
+                "tenant_ID": {
+                    "type": "integer"
+                },
+                "surname": {
+                    "type": "string"
+                },
+                "givenName": {
+                    "type": "string"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "userID": {
+                    "type": "integer"
+                },
+                "geometry": {
+                    "$ref": "#/definitions/JSONElement"
+                }
+            },
+            "required": [],
+            "title": "PutJSON"
+        },
+        "JSONElement": {
+            "type": "object",
+            "additionalProperties": false,
+            "title": "JSONElement"
+        },
+        "Contact": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "address3": {
+                    "type": "string"
+                },
+                "contactID": {
+                    "type": "integer"
+                },
+                "address2": {
+                    "type": "string"
+                },
+                "address1": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "locality": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "partner_ID": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "address4": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "active",
+                "address1",
+                "address2",
+                "address3",
+                "address4",
+                "contactID",
+                "country",
+                "email",
+                "locality",
+                "name",
+                "partner_ID",
+                "phone",
+                "postalCode",
+                "region",
+                "type"
+            ],
+            "title": "Contact"
+        },
+        "FloorGroup": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "luminaires": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Luminaire"
+                    }
+                },
+                "groupName": {
+                    "type": "string"
+                },
+                "masterHostID": {
+                    "type": "string"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "groupID": {
+                    "type": "integer"
+                },
+                "region": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegionElement"
+                    }
+                }
+            },
+            "required": [
+                "color",
+                "groupID",
+                "groupName",
+                "luminaires",
+                "masterHostID",
+                "region"
+            ],
+            "title": "FloorGroup"
+        },
+        "Luminaire": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "code": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JSONElement"
+                    }
+                },
+                "ciCode": {
+                    "type": "string"
+                },
+                "reportingType": {
+                    "type": "string"
+                },
+                "VLCEnabled": {
+                    "type": "boolean"
+                },
+                "locationDescription": {
+                    "type": "string"
+                },
+                "beaconUUID": {
+                    "type": "string"
+                },
+                "luminaireLabel": {
+                    "type": "string"
+                },
+                "primaryID": {
+                    "type": "integer"
+                },
+                "path": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LuminairePath"
+                    }
+                },
+                "luminaireLabelValue": {
+                    "type": "integer"
+                },
+                "luminairePositionID": {
+                    "type": "integer"
+                },
+                "luminaireType_ID": {
+                    "type": "integer"
+                },
+                "vlcID": {
+                    "type": "integer"
+                },
+                "luminaireTypeDisplayName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "VLCEnabled",
+                "beaconUUID",
+                "ciCode",
+                "code",
+                "locationDescription",
+                "luminaireLabel",
+                "luminaireLabelValue",
+                "luminairePositionID",
+                "luminaireTypeDisplayName",
+                "luminaireType_ID",
+                "path",
+                "primaryID",
+                "reportingType",
+                "vlcID"
+            ],
+            "title": "Luminaire"
+        },
+        "LuminairePath": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "x": {
+                    "type": "integer"
+                },
+                "y": {
+                    "type": "integer"
+                },
+                "z": {
+                    "type": "integer"
+                }
+            },
+            "required": ["x", "y", "z"],
+            "title": "LuminairePath"
+        },
+        "RegionPath": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "x": {
+                    "type": "integer"
+                },
+                "y": {
+                    "type": "integer"
+                }
+            },
+            "required": ["x", "y"],
+            "title": "RegionPath"
+        },
+        "FloorSpace": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "mobileFloorSpaceOptions": {
+                    "$ref": "#/definitions/JSONElement"
+                },
+                "gridXOffset": {
+                    "type": "integer"
+                },
+                "VLCEnabled": {
+                    "type": "boolean"
+                },
+                "GTX": {
+                    "type": "integer"
+                },
+                "floorSpaceMaps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FloorSpaceMap"
+                    }
+                },
+                "mapOffsetX": {
+                    "type": "integer"
+                },
+                "coordinateConversionRule": {
+                    "type": "integer"
+                },
+                "GTY": {
+                    "type": "integer"
+                },
+                "mapOffsetY": {
+                    "type": "integer"
+                },
+                "cellLength": {
+                    "type": "integer"
+                },
+                "mapAngleOffsetRadians": {
+                    "type": "integer"
+                },
+                "role_ID": {
+                    "type": "integer"
+                },
+                "VLCIDUpperLimit": {
+                    "type": "integer"
+                },
+                "floorSpaceWidth": {
+                    "type": "integer"
+                },
+                "floorSpaceName": {
+                    "type": "string"
+                },
+                "gridYOffset": {
+                    "type": "integer"
+                },
+                "floorSpaceID": {
+                    "type": "integer"
+                },
+                "operatingPoint": {
+                    "type": "integer"
+                },
+                "GTHeight": {
+                    "type": "integer"
+                },
+                "GTXRotation": {
+                    "type": "integer"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "GTYRotation": {
+                    "type": "integer"
+                },
+                "fixtureType": {
+                    "type": "string"
+                },
+                "cellWidth": {
+                    "type": "integer"
+                },
+                "GTHeadingOffset": {
+                    "type": "integer"
+                },
+                "maxMountingHeight": {
+                    "type": "integer"
+                },
+                "GTImageOrigin": {
+                    "type": "string"
+                },
+                "GTWidth": {
+                    "type": "integer"
+                },
+                "floorSpaceLength": {
+                    "type": "integer"
+                },
+                "hasVLC": {
+                    "type": "boolean"
+                },
+                "roleName": {
+                    "type": "string"
+                },
+                "site_ID": {
+                    "type": "integer"
+                },
+                "floor_ID": {
+                    "type": "integer"
+                },
+                "hasBLEBeacons": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "GTHeadingOffset",
+                "GTHeight",
+                "GTImageOrigin",
+                "GTWidth",
+                "GTX",
+                "GTXRotation",
+                "GTY",
+                "GTYRotation",
+                "VLCEnabled",
+                "VLCIDUpperLimit",
+                "active",
+                "cellLength",
+                "cellWidth",
+                "coordinateConversionRule",
+                "fixtureType",
+                "floorSpaceID",
+                "floorSpaceLength",
+                "floorSpaceMaps",
+                "floorSpaceName",
+                "floorSpaceWidth",
+                "floor_ID",
+                "gridXOffset",
+                "gridYOffset",
+                "hasBLEBeacons",
+                "hasVLC",
+                "mapAngleOffsetRadians",
+                "mapOffsetX",
+                "mapOffsetY",
+                "maxMountingHeight",
+                "mobileFloorSpaceOptions",
+                "operatingPoint",
+                "roleName",
+                "role_ID",
+                "site_ID"
+            ],
+            "title": "FloorSpace"
+        },
+        "FloorSpaceMap": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "tiledImageUrl": {
+                    "type": "string"
+                },
+                "epsg_ID": {
+                    "type": "integer"
+                },
+                "floorSpace_ID": {
+                    "type": "integer"
+                },
+                "imagePixelHeight": {
+                    "type": "integer"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "GTHeight": {
+                    "type": "integer"
+                },
+                "GTXRotation": {
+                    "type": "integer"
+                },
+                "GTX": {
+                    "type": "integer"
+                },
+                "imageMetersPerPixel": {
+                    "type": "integer"
+                },
+                "GTY": {
+                    "type": "integer"
+                },
+                "GTYRotation": {
+                    "type": "integer"
+                },
+                "imagePixelWidth": {
+                    "type": "integer"
+                },
+                "displayImageUrl": {
+                    "type": "string"
+                },
+                "effectiveTo": {
+                    "type": "string"
+                },
+                "GTWidth": {
+                    "type": "integer"
+                },
+                "containerName": {
+                    "type": "string"
+                },
+                "floorSpaceLength": {
+                    "type": "integer"
+                },
+                "floorSpaceWidth": {
+                    "type": "integer"
+                },
+                "mapID": {
+                    "type": "integer"
+                },
+                "folderName": {
+                    "type": "string"
+                },
+                "effectiveFrom": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GTHeight",
+                "GTWidth",
+                "GTX",
+                "GTXRotation",
+                "GTY",
+                "GTYRotation",
+                "containerName",
+                "displayImageUrl",
+                "displayName",
+                "effectiveFrom",
+                "effectiveTo",
+                "epsg_ID",
+                "floorSpaceLength",
+                "floorSpaceWidth",
+                "floorSpace_ID",
+                "folderName",
+                "imageMetersPerPixel",
+                "imagePixelHeight",
+                "imagePixelWidth",
+                "mapID",
+                "tiledImageUrl"
+            ],
+            "title": "FloorSpaceMap"
+        },
+        "Gcp": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "latitude": {
+                    "type": "integer"
+                },
+                "localY": {
+                    "type": "integer"
+                },
+                "localX": {
+                    "type": "integer"
+                },
+                "longitude": {
+                    "type": "integer"
+                }
+            },
+            "required": ["latitude", "localX", "localY", "longitude"],
+            "title": "Gcp"
+        },
+        "LuminaireSummary": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "floorSpaceCatalog_ID": {
+                    "type": "integer"
+                },
+                "reportingType": {
+                    "type": "string"
+                },
+                "VLCEnabled": {
+                    "type": "boolean"
+                },
+                "locationDescription": {
+                    "type": "string"
+                },
+                "luminaireType_ID": {
+                    "type": "integer"
+                },
+                "y1": {
+                    "type": "integer"
+                },
+                "y2": {
+                    "type": "integer"
+                },
+                "y3": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "tag": {
+                    "type": "string"
+                },
+                "luminaireTypeDisplayName": {
+                    "type": "string"
+                },
+                "BLEBeaconId": {
+                    "type": "integer"
+                },
+                "ciCode": {
+                    "type": "string"
+                },
+                "floorSpace_ID": {
+                    "type": "integer"
+                },
+                "BLEBeaconUUId": {
+                    "type": "string"
+                },
+                "luminairePositionId": {
+                    "type": "integer"
+                },
+                "externalWidth": {
+                    "type": "integer"
+                },
+                "externalLength": {
+                    "type": "integer"
+                },
+                "flagNotes": {
+                    "type": "string"
+                },
+                "x1": {
+                    "type": "integer"
+                },
+                "x2": {
+                    "type": "integer"
+                },
+                "z": {
+                    "type": "integer"
+                },
+                "x3": {
+                    "type": "integer"
+                },
+                "controlGroupId": {
+                    "type": "integer"
+                },
+                "controlGroup_ID": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "BLEBeaconId",
+                "BLEBeaconUUId",
+                "VLCEnabled",
+                "ciCode",
+                "controlGroupId",
+                "controlGroup_ID",
+                "externalLength",
+                "externalWidth",
+                "flagNotes",
+                "floorSpaceCatalog_ID",
+                "floorSpace_ID",
+                "id",
+                "locationDescription",
+                "luminairePositionId",
+                "luminaireTypeDisplayName",
+                "luminaireType_ID",
+                "reportingType",
+                "tag",
+                "x1",
+                "x2",
+                "x3",
+                "y1",
+                "y2",
+                "y3",
+                "z"
+            ],
+            "title": "LuminaireSummary"
+        },
+        "Properties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "desired": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JSONElement"
+                    }
+                },
+                "dwellTriggerMS": {
+                    "type": "integer"
+                },
+                "enterTrigger": {
+                    "type": "boolean"
+                },
+                "exitTrigger": {
+                    "type": "boolean"
+                },
+                "site_ID": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "zoneID": {
+                    "type": "integer"
+                },
+                "zoneType": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "floor_ID": {
+                    "type": "integer"
+                },
+                "messageContent": {
+                    "type": "string"
+                }
+            },
+            "required": [],
+            "title": "Properties"
+        },
+        "RegionElement": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "path": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegionPath"
+                    }
+                }
+            },
+            "required": ["path"],
+            "title": "RegionElement"
+        },
+        "PutQs": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "updateCICode": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                },
+                "hostId": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                },
+                "responseTimeout": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                },
+                "epsgCode": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                },
+                "floorSpaceLength": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                },
+                "floorSpaceWidth": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                },
+                "productSubscriptionID": {
+                    "$ref": "#/definitions/ResponseTimeout"
+                }
+            },
+            "required": [],
+            "title": "PutQs"
+        },
+        "ApimProductID": {
+            "anyOf": [{
+                    "type": "integer"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "title": "ApimProductID"
+        },
+        "PartnerID": {
+            "anyOf": [{
+                    "type": "integer"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "title": "PartnerID"
+        },
+        "RegionUnion": {
+            "anyOf": [{
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegionElement"
+                    }
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "title": "RegionUnion"
+        },
+        "As": {
+            "type": "string",
+            "title": "As"
+        },
+        "JSONEnum": {
+            "type": "string",
+            "title": "JSONEnum"
+        },
+        "Accept": {
+            "type": "string",
+            "title": "Accept"
+        },
+        "Authorization": {
+            "type": "string",
+            "title": "Authorization"
+        },
+        "ContentTypeUpload": {
+            "type": "string",
+            "title": "ContentTypeUpload"
+        },
+        "ResponseTimeout": {
+            "type": "string",
+            "title": "ResponseTimeout"
+        }
+    }
+}
